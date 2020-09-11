@@ -3,28 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
-
-  const [inputTime, setInputTime] = useState(0);
-  const [time, isCounting, startTimer] = useTimer();
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        {"IS COUNTING: " + isCounting}
-        <br />
-        {time}
-        <div>
-          <input type="number" value={inputTime} onChange={e => setInputTime(Number(e.target.value) || 0)} />
-          <button onClick={() => {
-            startTimer(inputTime)
-          }}>startTime</button>
-        </div>
-      </header>
-    </div>
-  );
-}
-
 function useTimer(): [number, boolean, (v: number) => void] {
   const [time, setTime] = useState(0);
 
@@ -52,6 +30,29 @@ function useTimer(): [number, boolean, (v: number) => void] {
   }, [time]);
 
   return [time, isCounting, startTimer];
+}
+
+
+function App() {
+
+  const [inputTime, setInputTime] = useState(0);
+  const [time, isCounting, startTimer] = useTimer();
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        {"IS COUNTING: " + isCounting}
+        <br />
+        {time}
+        <div>
+          <input type="number" value={inputTime} onChange={e => setInputTime(Number(e.target.value) || 0)} />
+          <button onClick={() => {
+            startTimer(inputTime)
+          }}>startTime</button>
+        </div>
+      </header>
+    </div>
+  );
 }
 
 export default App;
